@@ -9,7 +9,11 @@ RUN cat /etc/resolv.conf
 
 RUN curl http://mirror.switch.ch/
 
-RUN yum -y install openssh-server passwd dnsutil curl nmap lsof jq links bind-utils net-tools telnet iputils shellinabox initscripts; yum clean all
+RUN rpm --import https://packages.microsoft.com/keys/microsoft.asc
+
+RUN curl -o /etc/yum.repos.d/mssql-cli.repo https://packages.microsoft.com/config/rhel/7/prod.repo
+
+RUN yum -y install mssql-cli openssh-server passwd dnsutil curl nmap lsof jq links bind-utils net-tools telnet iputils shellinabox initscripts; yum clean all
 RUN /usr/sbin/sshd-keygen
 RUN echo shellinabox | passwd --stdin root
 
