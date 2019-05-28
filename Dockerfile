@@ -21,6 +21,7 @@ ADD run.sh /tmp/run.sh
 ADD libmapuid.so /usr/local/lib/libmapuid.so
 
 USER root
+RUN chmod 777 /opt/app-root/src
 
 EXPOSE 4200
 
